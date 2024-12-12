@@ -1,32 +1,40 @@
+/* eslint-disable react/jsx-no-undef */
+// import Product from "../components/Product"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import First from "./components/First";
-// import Product from "../components/Product"
-
 import "./App.css"
 import SingleProduct from "./pages/SingleProduct";
+import { createContext, useState } from "react";
+import Cart from "./pages/Cart"
+export const ecomContext = createContext({});
 
 const router = createBrowserRouter([
-  {path:"/",
-    element:<Home/>,
-    children:[
-     {
-      index:true,
-      element:<First/>
-     }, 
+  {
+    path: "/",
+    element: <Home />,
+    children: [
       {
-        path:"/about",
-        element:<About/>
+        index: true,
+        element: <First />
       },
       {
-        path:"/contact",
-        element:<Contact/>
+        path: "/about",
+        element: <About />
       },
       {
-        path:"/product/:id",
-        element:<SingleProduct/>
+        path: "/contact",
+        element: <Contact />
+      },
+      {
+        path: "/product/:id",
+        element: <SingleProduct />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       }
 
     ]
@@ -36,8 +44,17 @@ const router = createBrowserRouter([
 
 
 function App() {
-  return  <RouterProvider router={router}></RouterProvider>
-  
+  const [cart, setCart] = useState([])
+
+  function handleAddToCart(product) {
+    setCart([...cart, product])
+  }
+
+  return (<ecomContext.Provider value={{ cart, handleAddToCart }}>
+    <RouterProvider router={router}></RouterProvider>
+  </ecomContext.Provider>)
 }
 
 export default App
+
+
