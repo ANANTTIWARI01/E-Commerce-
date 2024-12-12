@@ -49,8 +49,12 @@ function App() {
   function handleAddToCart(product) {
     setCart([...cart, product])
   }
+  function handleDeleteCart(obj){
+const num = cart.filter(item=>item.id!==obj.id)
+return setCart([...num])
+  }
 
-  return (<ecomContext.Provider value={{ cart, handleAddToCart }}>
+  return (<ecomContext.Provider value={{ cart, handleAddToCart ,handleDeleteCart }}>
     <RouterProvider router={router}></RouterProvider>
   </ecomContext.Provider>)
 }
