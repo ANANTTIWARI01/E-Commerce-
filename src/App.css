@@ -2,101 +2,185 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
 header{
-  width: 100%;
-  height: 100px;
-  background-color: darkblue;
-  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: antiquewhite;
+  padding: 0.1rem 1rem;
 }
-header ul{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  list-style: none;
+
+.heading{
+  color: black;
 }
-header ul li{
-  padding-right: 10px;
-}
-header a{
-  color: white;
+
+a{
   text-decoration: none;
 }
-footer{
-  width: 100%;
-  height: 50px;
-  background-color: darkblue;
-  color: white;
 
+header ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
 }
-
-
 
 #products{
-  margin-top: 2rem;
-  margin-bottom: 2rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 15px;
+  margin: 2rem 0rem 2rem 3rem;
 }
+
+
 .product{
   width: 22%;
-  height: 300px;
+  height: 350px;
   margin: 1.5rem 0.5rem;
   text-align: center;
+  border-radius: 10px;
+  border: 1px solid black;
 }
-.product img{
-  width: 80%;
+
+.product img {
+  padding-top: 1rem;
+  width: 50%;
   height: 50%;
-margin-bottom: 1rem;
-}
-.product .title{
   margin-bottom: 1rem;
 }
-.product .title a{
+
+
+.product .title {
+  margin-bottom: 1rem;
+}
+.product .title a {
   color: #000;
 }
-.product .price{
+.product .price {
   margin-bottom: 1rem;
 }
-
-.product .addToCart{
+.product .addToCart,
+.singleProduct .addToCart {
   display: inline-block;
   padding: 10px 20px;
+  background-color: bisque;
+  color: #000;
+  border-radius: 1rem;
+  transition: all 300ms;
 }
-.left img{
-  width: 20%;
-  height: 20%;
-/* margin-bottom: 1rem;  */
+
+.product .addToCart:hover,
+.singleProduct .addToCart:hover {
+  background-color: #000;
+  color: bisque;
 }
-.left{
-  margin: auto;
+
+.singleProduct {
+  display: flex;
+  gap: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.singleProduct .left {
+  width: 25%;
+}
+.singleProduct .left img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+}
+
+.singleProduct .right {
+  width: 75%;
+}
+.singleProduct .right h2,
+.singleProduct .right p {
+  margin-bottom: 0.5rem;
+}
+footer {
+  font-size: 20px;
   text-align: center;
+  margin: 1rem 0 1rem 0;
+  font-weight: 700;
+  color: chocolate;
 }
-.right h2{
-  text-align: center;
+.Icons{
+  margin-top: 20px;
+  display: flex;
 }
-.right p{
-  text-align: center;
+
+
+.addIcon,.subIcon, .DelIcon{
+font-size: 1.5rem;
+color: black;
+margin: 1rem 1rem;
+cursor: pointer;
 }
-.singleProduct{
+
+.Icons button{
+  font-size: 1.5rem;
+  padding: 1rem 1rem;
+}
+
+.mainDiv{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+.Cart{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
-div#Items {
-  flex-wrap: wrap;
-  display: flex
-;
-  align-items: center;
-  justify-content: center;
+.cartImage{
+  height: 220px;
+  width: 220px;
 }
 
-.cart img{
-  width: 20%;
-  height: 20%;
+.cartImage img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cartItem{
+  width: 50%;
+}
+
+.cartItem h3,p{
+  margin-left: 15px;
+  font-size: 20px;
+}
+
+.mainDiv2{
+ margin: 2rem 2rem 0 0;
+}
+.subtotal{
+ font-size: 20px;
+ border: 1px solid black;
+ border-radius: 10px;
+ padding: 10px;
+}
+
+.checkout {
+  font-size: 20px;
+  margin: 1rem;
+  border-radius: 10px;
+  padding: 5px 0px;
+  text-align: center;
+  background-color: cornflowerblue;
+}
+
+.checkout a {
+  color: #000;
 }
