@@ -1,64 +1,98 @@
-/* eslint-disable react/jsx-no-undef */
-// import Product from "../components/Product"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+/* eslint-disable react-refresh/only-export-components */
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import First from "./components/First";
-import "./App.css"
+import First from "./pages/First";
 import SingleProduct from "./pages/SingleProduct";
-import { createContext, useState } from "react";
 import Cart from "./pages/Cart"
-export const ecomContext = createContext({});
+import './App.css'
+import { createContext, useState } from "react";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+ 
+export const ecomcontext = createContext(null)
 
-const router = createBrowserRouter([
+
+const router= createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
+    path:"/",
+    element:<Home />,
     children: [
       {
-        index: true,
-        element: <First />
+        index:true,
+        element:<First />
       },
       {
-        path: "/about",
-        element: <About />
+        path:"/about",
+        element:<About />
       },
       {
-        path: "/contact",
-        element: <Contact />
+        path:"/contact",
+        element:<Contact />
       },
       {
-        path: "/product/:id",
+        path:"/product/:id",
         element: <SingleProduct />
       },
       {
-        path: "/cart",
-        element: <Cart />
-      }
-
+        path:"/Cart",
+        element: <Cart/>
+      },
+      {
+        path:"/checkout",
+        element: <ProtectedRoute/>
+      },
+      {
+        path:"/register",
+        element: <Register/>
+      },
+      {
+        path:"/login",
+        element: <Login/>
+      },
+      
     ]
   }
 ])
 
 
-
 function App() {
-  const [cart, setCart] = useState([])
+  const [cart , setCart] = useState([])
 
-  function handleAddToCart(product) {
-    setCart([...cart, product])
+
+  function handleAddToCart(product){
+    
+    setCart([...cart,{...product,quantity:1}])
   }
-  function handleDeleteCart(obj){
-const num = cart.filter(item=>item.id!==obj.id)
-return setCart([...num])
+  
+console.log(cart);
+
+function changeQuantity(id,action){
+  if(action==="inc"){
+    setCart(cart.map((item)=>{ return item.id===id ? {...item,quantity:item.quantity+1}:item})) 
   }
 
-  return (<ecomContext.Provider value={{ cart, handleAddToCart ,handleDeleteCart }}>
+  else{
+    setCart(cart.map((item)=>{ return item.id===id ? {...item,quantity:item.quantity-1}:item})) 
+
+  }
+}
+
+  function handleRemoveFromCart(id){
+
+return setCart([...(cart.filter((item)=> item.id!==id))])
+
+  }
+
+
+
+  return (
+    <ecomcontext.Provider value={{cart, handleAddToCart,handleRemoveFromCart,changeQuantity}}>
     <RouterProvider router={router}></RouterProvider>
-  </ecomContext.Provider>)
+    </ecomcontext.Provider>
+  )
 }
 
 export default App
-
-
