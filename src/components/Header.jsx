@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom"
-import { authContext, ecomContext } from "../App"
+// import { authContext, ecomContext } from "../App"
+import {authContext} from "../context/Auth"
+import {ecomContext} from "../context/Ecom"
+
 import { useContext } from "react"
 function Header() {
   const { cart } = useContext(ecomContext)

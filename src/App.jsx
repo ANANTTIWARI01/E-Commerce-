@@ -6,13 +6,21 @@ import Contact from "./pages/Contact";
 import First from "./pages/First";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart"
-import './App.css'
-import { createContext, useState } from "react";
+import './Ecommerce.css'
+// import { createContext, useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import EcomProvider from "./context/Ecom";
+import AuthProvider from "./context/Auth";
  
-export const ecomcontext = createContext(null)
+// export const ecomcontext = createContext(null);
+// export const authContext=  createContext(null);
+//lorem ipsum authContext = createContext(null);
+//export const ecomContext =createContext(null);
+
+
+
 
 
 const router= createBrowserRouter([
@@ -59,40 +67,28 @@ const router= createBrowserRouter([
 
 
 function App() {
-  const [cart , setCart] = useState([])
 
 
-  function handleAddToCart(product){
-    
-    setCart([...cart,{...product,quantity:1}])
-  }
-  
-console.log(cart);
 
-function changeQuantity(id,action){
-  if(action==="inc"){
-    setCart(cart.map((item)=>{ return item.id===id ? {...item,quantity:item.quantity+1}:item})) 
-  }
+ 
 
-  else{
-    setCart(cart.map((item)=>{ return item.id===id ? {...item,quantity:item.quantity-1}:item})) 
 
-  }
-}
-
-  function handleRemoveFromCart(id){
-
-return setCart([...(cart.filter((item)=> item.id!==id))])
-
-  }
 
 
 
   return (
-    <ecomcontext.Provider value={{cart, handleAddToCart,handleRemoveFromCart,changeQuantity}}>
-    <RouterProvider router={router}></RouterProvider>
-    </ecomcontext.Provider>
+//     <authContext.Provider value={{isAuthenticated,login,logout,user}}>
+// <ecomcontext.Provider value={{cart, handleAddToCart,handleRemoveFromCart,changeQuantity}}>
+//     <RouterProvider router={router} />
+//     </ecomcontext.Provider>
+//     </authContext.Provider>
+
+<AuthProvider>
+  <EcomProvider>
+ <RouterProvider router={router} />
+  </EcomProvider>
+</AuthProvider>
+    
   )
 }
-
-export default App
+export default App;

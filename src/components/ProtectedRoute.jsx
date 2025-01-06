@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react"
-import{Navigate} from "react-router-dom"
-import Checkout from "../pages/Checkout"
+import { useEffect, useState } from "react";
+import Checkout from "../pages/Checkout";
+import { Navigate } from "react-router-dom";
+
 function ProtectedRoute() {
-    const [isAuthenticated , setIsAuthenticated]=useState(false)
 
-    useEffect(()=>{
-        if(localStorage.getItem("user")===null) setIsAuthenticated(true)
-    },[])
+const [isAuthenticated, setIsAuthenticated]=useState(false);
+useEffect(()=>{
+if(localStorage.getItem("user")!==null) setIsAuthenticated(true);
+},[])
 
 
-return !isAuthenticated ? <Navigate to="/login" replace />: <Checkout/>
+  return !isAuthenticated ? <Navigate to="/login" replace /> : <Checkout/>
 }
 
-export default ProtectedRoute;
+export default ProtectedRoute

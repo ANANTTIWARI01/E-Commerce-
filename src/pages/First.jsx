@@ -1,33 +1,33 @@
-// import axios from "axios"
-import instance from '../axiosConfig'
-import { useEffect, useState } from "react";
-import Product from "../components/Product"
+import { useEffect, useState } from "react"
+import Product from '../components/Product.jsx'
+import instance from '../axiosConfig.js'
+
 
 function First() {
-  const [products, setProducts] = useState([])
-  async function getData() {
-    const response = await instance.get("/products")
-    // console.log(response);
-    setProducts(response.data)
-  }
+const [products, setProducts]=useState([])
 
-  useEffect(() => {
-    getData()
-  })
+async function fetchData(){
+    const response=await instance(`/products`);
+    setProducts(response.data);
+}
+
+useEffect(()=>{
+    fetchData()
+},[])
+
+
   return (
-
     <>
-      {products.length > 0 ? (
-        <div id="Items">
-          {products.map((product) => {
-            return <Product key={product.id} product={product} />
-          })}
+    {products.length>0 ? (
+        <div id="products">
+            {products.map((product)=>{
+                return<Product key={product.id} product={product} />;
+            })}
         </div>
-      ) : (
-        <div>Loading...</div>
-      )}
+    ):(
+        <div>Loading ...</div>
+    )}
     </>
-
   )
 }
 

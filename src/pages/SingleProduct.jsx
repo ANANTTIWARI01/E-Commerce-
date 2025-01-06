@@ -1,15 +1,16 @@
 import instance from "../axiosConfig";
-import { useContext, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
-import { ecomcontext } from "../App";
 import CardQuant from "../components/CardQuant";
+import { useEcom } from "../context/Ecom";
 function SingleProduct() {
 
 
 
   const {id}=useParams(); // to get the dynamic part of the URL. 
   const [product,setProduct]=useState({});
-  const {cart,handleAddToCart} = useContext(ecomcontext);
+  // const {cart,handleAddToCart} = useContext(ecomcontext);
+  const {cart,handleAddToCart} = useEcom();
 
 
 useEffect(()=>{
